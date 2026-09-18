@@ -8,7 +8,9 @@ describe screens, elements, actions, decisions, and run results.
 | --- | --- |
 | `models` | Immutable domain values and validated run configuration |
 | `interfaces` | Structural protocols for devices, providers, and event sinks |
-| `android` | Authorized device selection, bounded XML parser, persistent RPC |
+| `sdk` | Public `JevDroid` session: connect, observe, decide, act, and run |
+| `planning` | Shared bounded Jev decision primitive and `PlannedAction` |
+| `android` | Authorized device selection, XML parser, standard ADB and persistent RPC |
 | `policy` | Build action choices from host permissions and current package |
 | `providers` | Persistent HTTP adapters with no inference retries |
 | `budget` | Reserve maximum request cost, then settle actual token usage |
@@ -18,8 +20,9 @@ describe screens, elements, actions, decisions, and run results.
 
 ## Run lifecycle
 
-1. Read the active Android window. With taps enabled, require two consecutive
-   matching parsed observations, bounded by a two-second polling deadline.
+1. Read Android's accessibility hierarchy. With taps enabled, require two
+   consecutive matching parsed observations. Persistent RPC polling has a
+   two-second deadline; standard ADB checks up to three dumps.
 2. Generate available actions from the package allowlist and capabilities.
 3. Bound the serialized state size and reserve estimated maximum request cost.
 4. Ask Jev one `choice` question using the supplied action IDs.
@@ -59,7 +62,8 @@ Implement `Device.snapshot(stable=False) -> Screen` and
 service or an offline evaluator. Raise `JevDroidError` subclasses for operational
 failures. Keep provider errors free of credentials and UI content.
 
-The caller owns device and provider lifetimes; `JevProvider` is a context manager.
+The caller owns injected device and provider lifetimes; `JevProvider` is a context
+manager. `JevDroid.connect()` manages the provider it creates automatically.
 `Agent.run()` returns `RunResult` for expected operational failures. Configuration
 and programming errors raise exceptions. Event sinks execute synchronously and
 their unexpected failures propagate, preventing further actions.

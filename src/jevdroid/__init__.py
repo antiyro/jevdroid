@@ -1,4 +1,4 @@
-"""JevDroid: text-first Android agents powered by Jev."""
+"""JevDroid: a framework for controlling Android over ADB with Jev."""
 
 from jevdroid.engine import Agent
 from jevdroid.models import (
@@ -11,13 +11,17 @@ from jevdroid.models import (
     RunStatus,
     Screen,
 )
+from jevdroid.planning import PlannedAction
 from jevdroid.policy import Policy
+from jevdroid.sdk import JevDroid
 
 __version__ = "0.1.0"
 __all__ = [
     "Action",
     "ActionKind",
     "Agent",
+    "JevDroid",
+    "PlannedAction",
     "Decision",
     "Element",
     "Policy",

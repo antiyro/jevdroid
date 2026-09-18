@@ -2,9 +2,9 @@
 
 # JevDroid
 
-**Text-first Android agents powered by Jev.**
+**A Python framework for controlling Android over ADB with Jev.**
 
-Read the interface. Choose a typed action. Execute within explicit limits.
+Connect Android. Let Jev decide. Execute through ADB.
 
 [![CI](https://github.com/antiyro/jevdroid/actions/workflows/ci.yml/badge.svg)](https://github.com/antiyro/jevdroid/actions/workflows/ci.yml)
 [![Python](https://img.shields.io/badge/python-3.11%2B-3776AB)](pyproject.toml)
@@ -14,14 +14,16 @@ Read the interface. Choose a typed action. Execute within explicit limits.
 
 </div>
 
-JevDroid is a small, typed Python framework for building Android agents. It reads
-the active accessibility tree over a persistent UIAutomator2 connection, asks
-[Jev](https://docs.typesafe.ai/introduction) to choose from a finite set of actions,
-and validates the choice before executing it.
+JevDroid connects [Jev](https://docs.typesafe.ai/introduction) to Android's control
+layer. Your code gives it a goal and available capabilities; Jev reads the device
+state and chooses an action; the framework translates that choice into Android
+input over ADB. Read screens, open applications, tap elements, swipe, and navigate
+back through a reusable Python SDK.
 
-Use it to build navigation assistants, bounded feed readers, and experiments with
-decision models. Applications are selected by Android package name; the engine
-has no app-specific selectors or TikTok-specific behavior.
+Use the full `run()` loop, or compose `observe()`, `decide()`, and `act()` in your
+own application. Choose standard ADB commands or a persistent UIAutomator2 service
+over ADB for faster observations. Application workflows live in your code, not
+in the framework; multiple allowed packages can participate in the same task.
 
 **Status: early alpha.** The original transport and Jev loop were exercised on a
 physical Android phone. This is a foundation for experimentation, not a guarantee
@@ -29,9 +31,13 @@ of reliable operation across every Android app. See [limitations](#limitations).
 
 ## What ships
 
+- **Jev-to-Android SDK.** `JevDroid.connect()` opens a session; `run()` handles a
+  goal, while `decide()` and `act()` let your code control each step.
 - **Python library and CLI.** Installable package, type hints, and replaceable
   `Device`, `Provider`, and event sink protocols.
 - **Text-only observations.** No screenshots, OCR, or vision inference in the loop.
+- **Two Android backends.** Standard platform-tools ADB, or persistent UIAutomator2
+  over ADB. Both use the same model decisions and policies.
 - **Persistent connections.** UIAutomator2 on Android and HTTP connection reuse for Jev.
 - **Two Jev adapters.** TypeSafe directly or Vercel AI Gateway; no Node.js runtime.
 - **Explicit capabilities.** Package allowlist; taps, back, and checkable elements
@@ -85,24 +91,53 @@ arbitrary UI text can still contain private information.
 import getpass
 from decimal import Decimal
 
-from jevdroid import Agent, Policy, RunConfig
-from jevdroid.android import AndroidDevice
-from jevdroid.providers import JevProvider
+from jevdroid import JevDroid, Policy, RunConfig
 
-with JevProvider(getpass.getpass("Vercel key: ")) as jev:
-    agent = Agent(
-        device=AndroidDevice(),
-        provider=jev,
-        policy=Policy(("com.android.settings",), allow_taps=True),
-        config=RunConfig(max_steps=12, budget_usd=Decimal("0.05")),
-    )
-    result = agent.run("Open Display settings without changing a setting.")
+with JevDroid.connect(
+    api_key=getpass.getpass("Vercel key: "),
+    backend="uiautomator",  # Use "adb" for standard platform-tools only.
+    policy=Policy(("com.android.settings",), allow_taps=True),
+    config=RunConfig(max_steps=12, budget_usd=Decimal("0.05")),
+) as droid:
+    result = droid.run("Open Display settings without changing a setting.")
     print(result.status, result.estimated_usd)
 ```
 
 `model_done` means the model reported completion. It is
 deliberately distinct from `completed`, which confirms the requested number of
 scroll gestures was executed, not that each gesture loaded a new item.
+
+### Control the loop yourself
+
+Inside a connected session, separate the decision from device input:
+
+```python
+screen = droid.observe()  # ADB observation; no inference
+plan = droid.decide("Open Display settings")  # Jev selects an action; no input yet
+print(plan.action.kind, plan.action.description)
+executed = droid.act(plan)  # Validate and execute once
+```
+
+Only the latest pending plan can execute, once. If the screen changed before a
+tap, `act()` returns `False`. `DONE` and `STOP` also return `False` because they
+issue no device input; inspect `plan.action.kind` to distinguish those cases.
+Manual decisions share the session's budget and decision limit. Each `run()` has
+its own limits. See the [SDK guide](docs/sdk.md) for lifecycle and extension points.
+
+### Select an Android backend
+
+| Backend | Implementation | Install | Use |
+| --- | --- | --- | --- |
+| `uiautomator` (default) | Persistent UIAutomator2 service reached through ADB | `pip install -e ".[android]"` | Fast interactive loops |
+| `adb` | `adb shell uiautomator dump`, `input`, and `am` | `pip install -e .` | Standard ADB with no persistent service |
+
+Both require authorized ADB access and Android platform-tools. The standard ADB
+backend is slower because it starts an XML dump for each observation.
+
+```bash
+jevdroid run "Open Display settings" --package com.android.settings \
+  --allow-taps --backend adb
+```
 
 ### Bounded scrolling in any app
 
@@ -133,7 +168,7 @@ Existing trace files are never overwritten.
 
 ```mermaid
 flowchart LR
-    A[Android / UIAutomator2] -->|active window XML| B[Bounded observation]
+    A[Android over ADB] -->|accessibility XML| B[Bounded observation]
     B --> C[Policy: available actions]
     C --> D[Jev: typed choice]
     D --> E[Validate choice and current screen]

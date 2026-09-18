@@ -2,15 +2,15 @@
 
 from __future__ import annotations
 
-import json
 import time
 from collections import Counter
 from typing import Any
 
 from jevdroid.budget import Budget
-from jevdroid.errors import BudgetExceeded, InvalidDecision, JevDroidError
+from jevdroid.errors import BudgetExceeded, JevDroidError
 from jevdroid.interfaces import Device, EventSink, Provider
 from jevdroid.models import ActionKind, RunConfig, RunResult, RunStatus
+from jevdroid.planning import choose_action
 from jevdroid.policy import Policy
 
 INSTRUCTIONS = (
@@ -72,32 +72,22 @@ class Agent:
                 actions = self.policy.actions(
                     screen, scroll_only=self.config.target_scrolls is not None
                 )
-                state = {
-                    "screen": screen.as_state(),
-                    "user_goal": goal,
-                    "recent_actions": history[-8:],
-                    "scrolls_executed": scrolls,
-                    "target_scrolls": self.config.target_scrolls,
-                }
-                payload_size = len(
-                    json.dumps(
-                        {
-                            "state": state,
-                            "instructions": INSTRUCTIONS,
-                            "choices": {a.id: a.description for a in actions},
-                        }
-                    ).encode()
+                plan = choose_action(
+                    self.provider,
+                    screen=screen,
+                    actions=actions,
+                    goal=goal,
+                    instructions=INSTRUCTIONS,
+                    config=self.config,
+                    budget=budget,
+                    context={
+                        "recent_actions": history[-8:],
+                        "scrolls_executed": scrolls,
+                        "target_scrolls": self.config.target_scrolls,
+                    },
                 )
-                if payload_size > self.config.max_payload_bytes:
-                    raise JevDroidError("Screen exceeds the configured inference payload limit.")
-                budget.reserve()
-                tick = time.perf_counter()
-                decision = self.provider.decide(state, actions, INSTRUCTIONS)
-                api_seconds = time.perf_counter() - tick
-                budget.settle(decision.input_tokens)
-                action = next((a for a in actions if a.id == decision.action_id), None)
-                if action is None:
-                    raise InvalidDecision("Provider chose an action outside the available choices.")
+                api_seconds = plan.api_seconds
+                decision, action = plan.decision, plan.action
                 emit(
                     {
                         "event": "decision",

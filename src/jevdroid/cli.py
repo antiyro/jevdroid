@@ -15,6 +15,7 @@ from pathlib import Path
 from typing import Any, cast
 
 from jevdroid import Agent, Policy, RunConfig, RunStatus, __version__
+from jevdroid.android.adb import AdbDevice
 from jevdroid.android.device import AndroidDevice, devices
 from jevdroid.demo import DemoDevice, DemoProvider
 from jevdroid.errors import JevDroidError
@@ -25,7 +26,7 @@ from jevdroid.trace import JsonlTrace
 
 def parser() -> argparse.ArgumentParser:
     root = argparse.ArgumentParser(
-        prog="jevdroid", description="Text-first Android agents powered by Jev."
+        prog="jevdroid", description="Control Android over ADB with Jev."
     )
     root.add_argument("--version", action="version", version=f"JevDroid {__version__}")
     commands = root.add_subparsers(dest="command", required=True)
@@ -33,8 +34,10 @@ def parser() -> argparse.ArgumentParser:
     commands.add_parser("demo", help="Run a scripted simulation; no device, API key or charges")
     inspect = commands.add_parser("inspect", help="Print accessible UI text locally; no API calls")
     inspect.add_argument("--serial")
+    inspect.add_argument("--backend", choices=["uiautomator", "adb"], default="uiautomator")
     benchmark = commands.add_parser("benchmark", help="Measure XML read latency; no API calls")
     benchmark.add_argument("--serial")
+    benchmark.add_argument("--backend", choices=["uiautomator", "adb"], default="uiautomator")
     benchmark.add_argument("--samples", type=int, default=10)
     for name, help_text in (
         ("run", "Run a bounded navigation task"),
@@ -56,9 +59,13 @@ def parser() -> argparse.ArgumentParser:
             cmd.add_argument("--count", type=int, default=5)
             cmd.add_argument("--pause", type=float, default=0.5)
         cmd.add_argument(
-            "--package", required=True, help="Only this package may receive gestures or taps"
+            "--package",
+            required=True,
+            action="append",
+            help="Allowed app package; repeat for multi-app tasks",
         )
         cmd.add_argument("--serial")
+        cmd.add_argument("--backend", choices=["uiautomator", "adb"], default="uiautomator")
         cmd.add_argument("--provider", choices=["vercel", "typesafe"], default="vercel")
         cmd.add_argument("--model", help="Override the provider's default Jev model")
         cmd.add_argument("--max-steps", type=int, default=20)
@@ -106,7 +113,9 @@ def _main(argv: list[str] | None) -> int:
     if args.command == "benchmark" and not 1 <= args.samples <= 100:
         cli.error("--samples must be between 1 and 100")
     if args.command in {"inspect", "benchmark"}:
-        device = AndroidDevice(args.serial)
+        device = (
+            AndroidDevice(args.serial) if args.backend == "uiautomator" else AdbDevice(args.serial)
+        )
         if args.command == "inspect":
             print(json.dumps(device.snapshot().as_state(), indent=2, ensure_ascii=False))
         else:
@@ -121,8 +130,11 @@ def _main(argv: list[str] | None) -> int:
                 )
             )
         return 0
-    package = validate_package(args.package)
+    packages = tuple(validate_package(p) for p in args.package)
+    package = packages[0]
     is_scroll = args.command == "scroll"
+    if is_scroll and len(packages) != 1:
+        cli.error("scroll requires exactly one --package")
     config = RunConfig(
         max_steps=args.max_steps,
         budget_usd=Decimal(args.budget),
@@ -133,7 +145,7 @@ def _main(argv: list[str] | None) -> int:
     if not is_scroll and args.allow_checkable and not args.allow_taps:
         cli.error("--allow-checkable requires --allow-taps")
     policy = Policy(
-        (package,),
+        packages,
         allow_taps=not is_scroll and args.allow_taps,
         allow_back=not is_scroll and args.allow_back,
         allow_checkable=not is_scroll and args.allow_checkable,
@@ -149,7 +161,9 @@ def _main(argv: list[str] | None) -> int:
         cli.error("goal must contain 1–2000 characters")
     with ExitStack() as stack:
         trace = stack.enter_context(JsonlTrace(args.trace)) if args.trace else None
-        device = AndroidDevice(args.serial)
+        device = (
+            AndroidDevice(args.serial) if args.backend == "uiautomator" else AdbDevice(args.serial)
+        )
         variable = "AI_GATEWAY_API_KEY" if args.provider == "vercel" else "TYPESAFE_API_KEY"
         key = os.environ.get(variable, "").strip()
         if not key:

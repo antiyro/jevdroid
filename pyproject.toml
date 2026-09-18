@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "jevdroid"
 version = "0.1.0"
-description = "Text-first Android agents powered by Jev."
+description = "A Python framework for controlling Android over ADB with Jev."
 readme = "README.md"
 requires-python = ">=3.11"
 license = "MIT"

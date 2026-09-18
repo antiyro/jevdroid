@@ -20,6 +20,7 @@ UI text; do not post it publicly without reviewing it.
 | Option | Default | Purpose |
 | --- | --- | --- |
 | `--package` | Required | Allowed application package |
+| `--backend` | `uiautomator` | Persistent UIAutomator2 over ADB, or standard `adb` |
 | `--provider` | `vercel` | `vercel` or `typesafe` |
 | `--model` | Provider default | Jev model ID override |
 | `--max-steps` | `20` | Hard ceiling on decisions, including skipped actions |
@@ -32,6 +33,14 @@ Navigation supports `--allow-taps`, `--allow-back`, and `--allow-checkable`
 (requires taps). All are off by default. Scroll supports `--count` (default 5)
 and `--pause` (default 0.5 seconds between gestures, excluding inference time).
 The count must fit inside `--max-steps`; allow extra decisions for launching or waiting.
+
+Repeat `--package` for a navigation task spanning multiple apps. A scroll task
+accepts exactly one package. `inspect` and `benchmark` also accept `--backend`.
+
+```bash
+jevdroid run "Open the settings application" \
+  --package com.android.settings --package org.example.yourapp --backend adb
+```
 
 The hidden interactive prompt is preferred for local experiments. Noninteractive
 jobs use `AI_GATEWAY_API_KEY` or `TYPESAFE_API_KEY`. JevDroid does not load `.env`
