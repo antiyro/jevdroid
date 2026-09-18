@@ -29,6 +29,25 @@ in the framework; multiple allowed packages can participate in the same task.
 physical Android phone. This is a foundation for experimentation, not a guarantee
 of reliable operation across every Android app. See [limitations](#limitations).
 
+## Measured speed and cost
+
+Results from physical-device trials on a Samsung Galaxy A05 over USB, using Jev
+through Vercel AI Gateway:
+
+| Metric | Observed result |
+| --- | --- |
+| **Jev decision latency** | **390 ms median** · 343–519 ms across four scroll decisions |
+| **Estimated cost per Jev decision** | **$0.000058 average** for those four decisions |
+| **Estimated cost per 1,000 similar decisions** | **$0.058**, extrapolated at the same token usage and rate |
+| **Android action execution** | **88 ms** to launch Settings · **170 ms** to tap a target |
+| **Complete navigation task** | **6.57 s · $0.000307 estimated** · four decisions, two executed actions |
+
+Decision latency measures the API call; action execution measures device input.
+The full task includes observation, inference, validation, and execution. Costs
+are input-token estimates at $0.042 per million tokens. These small samples were
+collected with the POC; see [measurement details](docs/performance.md) for counts,
+formulas, and the separate framework smoke checks.
+
 ## What ships
 
 - **Jev-to-Android SDK.** `JevDroid.connect()` opens a session; `run()` handles a
@@ -182,20 +201,12 @@ screen and a fresh matching observation; swipes tolerate changing captions but
 revalidate the foreground package. Observe-and-act is not atomic: see the
 [execution boundaries](docs/architecture.md#execution-boundaries).
 
-## Performance and language choice
+## Measure your own workload
 
-Python keeps the device integration close to UIAutomator2's maintained client.
-The measured POC spent its time in Android reads/transitions and remote inference,
-so replacing the orchestration with Rust would not remove those waits.
-
-On one Samsung Galaxy A05, the POC's persistent XML reads had a **229 ms median**
-over ten samples, versus approximately **2.7 s** for cold ADB dumps. Four TikTok
-scroll decisions took approximately **0.34–0.52 s each** at the API boundary.
-These are historical observations, not framework benchmarks or throughput promises.
-The fifth scroll was interrupted by a provider rate limit.
-
-Measure your device with `jevdroid benchmark`. See [measurement methodology and
-cost accounting](docs/performance.md) for the boundaries behind those numbers.
+Use `jevdroid benchmark` for device observation latency, and `--trace` to record
+UI, Jev decision, validation, and Android execution times for a real task.
+See [performance and cost accounting](docs/performance.md) for the exact boundaries
+and per-decision cost calculations.
 
 ## Limitations
 
