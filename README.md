@@ -22,8 +22,7 @@ providers, action permissions, and per-run budgets.
 | Estimated decisions per $1 | **~17,200** at the same average cost |
 | Android input execution | **88–170 ms** |
 
-Observed in initial device trials; results vary by workload. API decisions and
-device input are timed separately. [Methodology →](docs/performance.md)
+Initial measurements; results vary by workload. API and input timings are separate.
 
 ## Quick start
 
