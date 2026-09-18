@@ -17,13 +17,12 @@ providers, action permissions, and per-run budgets.
 
 | Metric | Measured result |
 | --- | --- |
-| Jev decision latency | **390 ms median** across four scroll decisions |
-| Estimated cost per decision | **$0.000058 average** for those decisions |
-| Android action execution | **88 ms** to launch Settings · **170 ms** to tap |
+| Jev decision latency | **390 ms median** |
+| Estimated cost per decision | **$0.000058 average** |
+| Android input execution | **88–170 ms** |
 
-Small POC samples on a Galaxy A05 over USB. Decision latency covers inference;
-action timing covers device input only. Costs use $0.042 per million input tokens.
-[Measurements and methodology →](docs/performance.md)
+Observed in initial device trials; results vary by workload. API decisions and
+device input are timed separately. [Methodology →](docs/performance.md)
 
 ## Quick start
 
