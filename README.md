@@ -17,12 +17,13 @@ providers, action permissions, and per-run budgets.
 
 | Metric | Result |
 | --- | --- |
-| Jev decision latency | **390 ms median** |
-| Estimated cost per decision | **$0.000058 average** |
-| Estimated decisions per $1 | **~17,200** at the same average cost |
-| Android input execution | **88–170 ms** |
+| Jev decision latency | **314 ms median** |
+| Estimated cost per decision | **$0.00003374 average** |
+| Estimated decisions per $1 | **~29,600** at the same average cost |
+| Decision accuracy | **78.6%** |
 
-Initial measurements; results vary by workload. API and input timings are separate.
+Measured on 56 synthetic decisions across 28 cases, including incorrect answers.
+API timings exclude Android input. [Results and limitations](benchmarks/README.md).
 
 ## Quick start
 

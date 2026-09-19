@@ -1,0 +1,262 @@
+{
+  "suite": "jevdroid-episodes-v1",
+  "suite_sha256": "e0ad4bd15aaac91235fc769cb5adca67f87977013233fddccb75f05f14212660",
+  "started_at": "2026-09-19T00:10:44.989985+00:00",
+  "interval_seconds": 30.0,
+  "episodes": [
+    {
+      "id": "android-version",
+      "kind": "stateful_simulation",
+      "steps": [
+        {
+          "step": 1,
+          "action": "STOP",
+          "executed": false,
+          "api_seconds": 1.36484,
+          "observation_and_decision_seconds": 1.367758,
+          "validation_and_execution_seconds": 6e-06,
+          "input_tokens": 552,
+          "expected_screen_evidence": false,
+          "resulting_node": "launcher"
+        }
+      ],
+      "success": false,
+      "status": "incorrect_terminal",
+      "estimated_usd": "0.000023184",
+      "reserved_tokens": 0
+    },
+    {
+      "id": "invoice-verification",
+      "kind": "stateful_simulation",
+      "steps": [
+        {
+          "step": 1,
+          "action": "TAP_0",
+          "executed": true,
+          "api_seconds": 0.574254,
+          "observation_and_decision_seconds": 0.575942,
+          "validation_and_execution_seconds": 9.8e-05,
+          "input_tokens": 737,
+          "expected_screen_evidence": false,
+          "resulting_node": "downloads"
+        },
+        {
+          "step": 2,
+          "action": "TAP_1",
+          "executed": true,
+          "api_seconds": 0.410017,
+          "observation_and_decision_seconds": 0.412951,
+          "validation_and_execution_seconds": 0.000312,
+          "input_tokens": 866,
+          "expected_screen_evidence": false,
+          "resulting_node": "preview"
+        },
+        {
+          "step": 3,
+          "action": "DONE",
+          "executed": false,
+          "api_seconds": 1.085324,
+          "observation_and_decision_seconds": 1.087081,
+          "validation_and_execution_seconds": 1e-05,
+          "input_tokens": 791,
+          "expected_screen_evidence": true,
+          "resulting_node": "preview"
+        }
+      ],
+      "success": true,
+      "status": "success",
+      "estimated_usd": "0.000100548",
+      "reserved_tokens": 0
+    },
+    {
+      "id": "dismiss-and-navigate",
+      "kind": "stateful_simulation",
+      "steps": [
+        {
+          "step": 1,
+          "action": "TAP_1",
+          "executed": true,
+          "api_seconds": 0.527268,
+          "observation_and_decision_seconds": 0.527964,
+          "validation_and_execution_seconds": 0.000102,
+          "input_tokens": 738,
+          "expected_screen_evidence": false,
+          "resulting_node": "settings"
+        },
+        {
+          "step": 2,
+          "action": "TAP_2",
+          "executed": true,
+          "api_seconds": 0.580153,
+          "observation_and_decision_seconds": 0.581483,
+          "validation_and_execution_seconds": 0.000212,
+          "input_tokens": 792,
+          "expected_screen_evidence": false,
+          "resulting_node": "notifications"
+        },
+        {
+          "step": 3,
+          "action": "BACK",
+          "executed": true,
+          "api_seconds": 0.444363,
+          "observation_and_decision_seconds": 0.446169,
+          "validation_and_execution_seconds": 0.00014,
+          "input_tokens": 748,
+          "expected_screen_evidence": true,
+          "resulting_node": "settings"
+        },
+        {
+          "step": 4,
+          "action": "TAP_2",
+          "executed": true,
+          "api_seconds": 0.354392,
+          "observation_and_decision_seconds": 0.35478,
+          "validation_and_execution_seconds": 6.3e-05,
+          "input_tokens": 803,
+          "expected_screen_evidence": false,
+          "resulting_node": "notifications"
+        },
+        {
+          "step": 5,
+          "action": "BACK",
+          "executed": true,
+          "api_seconds": 0.346091,
+          "observation_and_decision_seconds": 0.347523,
+          "validation_and_execution_seconds": 0.000133,
+          "input_tokens": 759,
+          "expected_screen_evidence": true,
+          "resulting_node": "settings"
+        },
+        {
+          "step": 6,
+          "action": "TAP_2",
+          "executed": true,
+          "api_seconds": 0.614181,
+          "observation_and_decision_seconds": 0.615296,
+          "validation_and_execution_seconds": 7.1e-05,
+          "input_tokens": 814,
+          "expected_screen_evidence": false,
+          "resulting_node": "notifications"
+        },
+        {
+          "step": 7,
+          "action": "BACK",
+          "executed": true,
+          "api_seconds": 0.493305,
+          "observation_and_decision_seconds": 0.494598,
+          "validation_and_execution_seconds": 0.000188,
+          "input_tokens": 770,
+          "expected_screen_evidence": true,
+          "resulting_node": "settings"
+        },
+        {
+          "step": 8,
+          "action": "TAP_2",
+          "executed": true,
+          "api_seconds": 0.372509,
+          "observation_and_decision_seconds": 0.372964,
+          "validation_and_execution_seconds": 7.8e-05,
+          "input_tokens": 825,
+          "expected_screen_evidence": false,
+          "resulting_node": "notifications"
+        }
+      ],
+      "success": false,
+      "status": "step_limit",
+      "estimated_usd": "0.000262458",
+      "reserved_tokens": 0
+    },
+    {
+      "id": "physical-display-navigation",
+      "kind": "physical_android",
+      "steps": [
+        {
+          "step": 1,
+          "action": "SCROLL_DOWN",
+          "executed": true,
+          "api_seconds": 0.490958,
+          "observation_and_decision_seconds": 0.873967,
+          "validation_and_execution_seconds": 1.140411,
+          "input_tokens": 1344,
+          "expected_screen_evidence": false
+        },
+        {
+          "step": 2,
+          "action": "TAP_6",
+          "executed": true,
+          "api_seconds": 0.422946,
+          "observation_and_decision_seconds": 0.934695,
+          "validation_and_execution_seconds": 0.664291,
+          "input_tokens": 1919,
+          "expected_screen_evidence": true
+        },
+        {
+          "step": 3,
+          "action": "LAUNCH_0",
+          "executed": true,
+          "api_seconds": 0.450345,
+          "observation_and_decision_seconds": 0.95379,
+          "validation_and_execution_seconds": 0.707902,
+          "input_tokens": 737,
+          "expected_screen_evidence": false
+        },
+        {
+          "step": 4,
+          "action": "LAUNCH_0",
+          "executed": true,
+          "api_seconds": 0.469236,
+          "observation_and_decision_seconds": 0.981723,
+          "validation_and_execution_seconds": 0.675729,
+          "input_tokens": 744,
+          "expected_screen_evidence": false
+        },
+        {
+          "step": 5,
+          "action": "LAUNCH_0",
+          "executed": true,
+          "api_seconds": 0.417295,
+          "observation_and_decision_seconds": 0.914467,
+          "validation_and_execution_seconds": 0.674753,
+          "input_tokens": 751,
+          "expected_screen_evidence": false
+        },
+        {
+          "step": 6,
+          "action": "LAUNCH_0",
+          "executed": true,
+          "api_seconds": 0.492738,
+          "observation_and_decision_seconds": 0.993843,
+          "validation_and_execution_seconds": 0.694591,
+          "input_tokens": 758,
+          "expected_screen_evidence": false
+        },
+        {
+          "step": 7,
+          "action": "LAUNCH_0",
+          "executed": true,
+          "api_seconds": 0.534741,
+          "observation_and_decision_seconds": 1.009448,
+          "validation_and_execution_seconds": 0.675388,
+          "input_tokens": 765,
+          "expected_screen_evidence": false
+        },
+        {
+          "step": 8,
+          "action": "LAUNCH_0",
+          "executed": true,
+          "api_seconds": 0.401433,
+          "observation_and_decision_seconds": 0.902239,
+          "validation_and_execution_seconds": 0.681787,
+          "input_tokens": 772,
+          "expected_screen_evidence": false
+        }
+      ],
+      "success": false,
+      "status": "step_limit",
+      "estimated_usd": "0.00032718",
+      "reserved_tokens": 0
+    }
+  ],
+  "status": "complete",
+  "finished_at": "2026-09-19T00:20:53.912918+00:00"
+}

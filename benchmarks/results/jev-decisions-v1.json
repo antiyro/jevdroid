@@ -1,0 +1,137 @@
+{
+  "suite": "jevdroid-decisions-v1",
+  "suite_sha256": "a951d95f8e26ae57e9d9b5540292cb8f827f93429cf12deeb2177e8ddfaa8380",
+  "instructions_sha256": "2e5e4ed8dd425c06df8caad53af642409819eac11b7f1912d360da72fd0fd31e",
+  "kind": "synthetic_single_decision_evaluation",
+  "seed": 42,
+  "started_at": "2026-09-19T00:04:57.231752+00:00",
+  "interval_seconds": 15.5,
+  "input_price_per_million": "0.042",
+  "records": [
+    {
+      "case_id": "recovery-wrong-page",
+      "category": "recovery",
+      "variant": 0,
+      "display_order": [
+        0,
+        1
+      ],
+      "expected": "BACK",
+      "actual": "BACK",
+      "correct": true,
+      "api_seconds": 1.068336,
+      "input_tokens": 714,
+      "model": "typesafe-ai/jev",
+      "estimated_usd": "0.000029988"
+    },
+    {
+      "case_id": "completion-link-only",
+      "category": "state_awareness",
+      "variant": 1,
+      "display_order": [
+        1,
+        0,
+        2
+      ],
+      "expected": "TAP_1",
+      "actual": "TAP_1",
+      "correct": true,
+      "api_seconds": 0.481758,
+      "input_tokens": 749,
+      "model": "typesafe-ai/jev",
+      "estimated_usd": "0.000031458"
+    },
+    {
+      "case_id": "completed-negative-state",
+      "category": "state_awareness",
+      "variant": 0,
+      "display_order": [
+        0,
+        1
+      ],
+      "expected": "DONE",
+      "actual": "DONE",
+      "correct": true,
+      "api_seconds": 0.543015,
+      "input_tokens": 716,
+      "model": "typesafe-ai/jev",
+      "estimated_usd": "0.000030072"
+    },
+    {
+      "case_id": "checkout-total",
+      "category": "arithmetic",
+      "variant": 1,
+      "display_order": [
+        1,
+        0,
+        2
+      ],
+      "expected": "TAP_0",
+      "actual": "TAP_2",
+      "correct": false,
+      "api_seconds": 0.406883,
+      "input_tokens": 820,
+      "model": "typesafe-ai/jev",
+      "estimated_usd": "0.00003444"
+    },
+    {
+      "case_id": "conditional-offline",
+      "category": "conditional",
+      "variant": 0,
+      "display_order": [
+        0,
+        1,
+        2
+      ],
+      "expected": "TAP_0",
+      "actual": "TAP_0",
+      "correct": true,
+      "api_seconds": 0.729122,
+      "input_tokens": 777,
+      "model": "typesafe-ai/jev",
+      "estimated_usd": "0.000032634"
+    },
+    {
+      "case_id": "conditional-battery-high",
+      "variant": 0,
+      "error_type": "ProviderError",
+      "http_status": 429
+    }
+  ],
+  "status": "stopped_on_error",
+  "summary": {
+    "planned_decisions": 56,
+    "attempted": 6,
+    "answered": 5,
+    "correct": 4,
+    "accuracy": 0.8,
+    "coverage": 0.08928571428571429,
+    "errors": 1,
+    "median_api_seconds": 0.543015,
+    "p95_api_seconds": 1.0004932000000002,
+    "mean_cost_per_answer_usd": "0.0000317184",
+    "categories": {
+      "arithmetic": {
+        "correct": 0,
+        "answered": 1
+      },
+      "conditional": {
+        "correct": 1,
+        "answered": 1
+      },
+      "recovery": {
+        "correct": 1,
+        "answered": 1
+      },
+      "state_awareness": {
+        "correct": 2,
+        "answered": 2
+      }
+    },
+    "both_presentations_correct": 0,
+    "fully_evaluated_pairs": 0
+  },
+  "estimated_usd_including_reservation": "0.002911104",
+  "reserved_tokens": 65536,
+  "finished_at": "2026-09-19T00:06:20.491690+00:00"
+}

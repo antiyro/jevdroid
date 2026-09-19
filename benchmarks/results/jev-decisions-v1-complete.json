@@ -1,0 +1,1018 @@
+{
+  "suite": "jevdroid-decisions-v1",
+  "suite_sha256": "a951d95f8e26ae57e9d9b5540292cb8f827f93429cf12deeb2177e8ddfaa8380",
+  "instructions_sha256": "2e5e4ed8dd425c06df8caad53af642409819eac11b7f1912d360da72fd0fd31e",
+  "kind": "synthetic_single_decision_evaluation",
+  "seed": 42,
+  "started_at": "2026-09-19T00:13:57.299180+00:00",
+  "interval_seconds": 0.5,
+  "input_price_per_million": "0.042",
+  "records": [
+    {
+      "case_id": "recovery-wrong-page",
+      "category": "recovery",
+      "variant": 0,
+      "display_order": [
+        0,
+        1
+      ],
+      "expected": "BACK",
+      "actual": "BACK",
+      "correct": true,
+      "api_seconds": 1.068336,
+      "input_tokens": 714,
+      "model": "typesafe-ai/jev",
+      "estimated_usd": "0.000029988"
+    },
+    {
+      "case_id": "completion-link-only",
+      "category": "state_awareness",
+      "variant": 1,
+      "display_order": [
+        1,
+        0,
+        2
+      ],
+      "expected": "TAP_1",
+      "actual": "TAP_1",
+      "correct": true,
+      "api_seconds": 0.481758,
+      "input_tokens": 749,
+      "model": "typesafe-ai/jev",
+      "estimated_usd": "0.000031458"
+    },
+    {
+      "case_id": "completed-negative-state",
+      "category": "state_awareness",
+      "variant": 0,
+      "display_order": [
+        0,
+        1
+      ],
+      "expected": "DONE",
+      "actual": "DONE",
+      "correct": true,
+      "api_seconds": 0.543015,
+      "input_tokens": 716,
+      "model": "typesafe-ai/jev",
+      "estimated_usd": "0.000030072"
+    },
+    {
+      "case_id": "checkout-total",
+      "category": "arithmetic",
+      "variant": 1,
+      "display_order": [
+        1,
+        0,
+        2
+      ],
+      "expected": "TAP_0",
+      "actual": "TAP_2",
+      "correct": false,
+      "api_seconds": 0.406883,
+      "input_tokens": 820,
+      "model": "typesafe-ai/jev",
+      "estimated_usd": "0.00003444"
+    },
+    {
+      "case_id": "conditional-offline",
+      "category": "conditional",
+      "variant": 0,
+      "display_order": [
+        0,
+        1,
+        2
+      ],
+      "expected": "TAP_0",
+      "actual": "TAP_0",
+      "correct": true,
+      "api_seconds": 0.729122,
+      "input_tokens": 777,
+      "model": "typesafe-ai/jev",
+      "estimated_usd": "0.000032634"
+    },
+    {
+      "case_id": "conditional-battery-high",
+      "variant": 0,
+      "error_type": "ProviderError",
+      "http_status": 429
+    },
+    {
+      "case_id": "conditional-battery-high",
+      "category": "conditional",
+      "variant": 0,
+      "display_order": [
+        0,
+        1,
+        2
+      ],
+      "expected": "TAP_0",
+      "actual": "TAP_0",
+      "correct": true,
+      "api_seconds": 0.466919,
+      "input_tokens": 774,
+      "model": "typesafe-ai/jev",
+      "estimated_usd": "0.000032508"
+    },
+    {
+      "case_id": "completed-negative-state",
+      "category": "state_awareness",
+      "variant": 1,
+      "display_order": [
+        1,
+        0
+      ],
+      "expected": "DONE",
+      "actual": "DONE",
+      "correct": true,
+      "api_seconds": 0.392123,
+      "input_tokens": 716,
+      "model": "typesafe-ai/jev",
+      "estimated_usd": "0.000030072"
+    },
+    {
+      "case_id": "numeric-version-order",
+      "category": "disambiguation",
+      "variant": 0,
+      "display_order": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "expected": "TAP_3",
+      "actual": "TAP_3",
+      "correct": true,
+      "api_seconds": 0.331424,
+      "input_tokens": 980,
+      "model": "typesafe-ai/jev",
+      "estimated_usd": "0.00004116"
+    },
+    {
+      "case_id": "similar-labels",
+      "category": "disambiguation",
+      "variant": 1,
+      "display_order": [
+        1,
+        0,
+        2
+      ],
+      "expected": "TAP_2",
+      "actual": "TAP_2",
+      "correct": true,
+      "api_seconds": 0.324754,
+      "input_tokens": 774,
+      "model": "typesafe-ai/jev",
+      "estimated_usd": "0.000032508"
+    },
+    {
+      "case_id": "conditional-battery",
+      "category": "conditional",
+      "variant": 1,
+      "display_order": [
+        2,
+        0,
+        1
+      ],
+      "expected": "TAP_2",
+      "actual": "TAP_2",
+      "correct": true,
+      "api_seconds": 0.303894,
+      "input_tokens": 774,
+      "model": "typesafe-ai/jev",
+      "estimated_usd": "0.000032508"
+    },
+    {
+      "case_id": "unit-price",
+      "category": "arithmetic",
+      "variant": 1,
+      "display_order": [
+        2,
+        1,
+        0
+      ],
+      "expected": "TAP_1",
+      "actual": "TAP_0",
+      "correct": false,
+      "api_seconds": 0.318737,
+      "input_tokens": 818,
+      "model": "typesafe-ai/jev",
+      "estimated_usd": "0.000034356"
+    },
+    {
+      "case_id": "avoid-failed-path",
+      "category": "recovery",
+      "variant": 1,
+      "display_order": [
+        1,
+        0
+      ],
+      "expected": "BACK",
+      "actual": "BACK",
+      "correct": true,
+      "api_seconds": 0.311828,
+      "input_tokens": 722,
+      "model": "typesafe-ai/jev",
+      "estimated_usd": "0.000030324"
+    },
+    {
+      "case_id": "no-valid-option",
+      "category": "constraints",
+      "variant": 1,
+      "display_order": [
+        0,
+        2,
+        1
+      ],
+      "expected": "STOP",
+      "actual": "STOP",
+      "correct": true,
+      "api_seconds": 0.328131,
+      "input_tokens": 814,
+      "model": "typesafe-ai/jev",
+      "estimated_usd": "0.000034188"
+    },
+    {
+      "case_id": "overnight-duration",
+      "category": "arithmetic",
+      "variant": 0,
+      "display_order": [
+        0,
+        1,
+        2
+      ],
+      "expected": "TAP_0",
+      "actual": "TAP_2",
+      "correct": false,
+      "api_seconds": 0.346059,
+      "input_tokens": 865,
+      "model": "typesafe-ai/jev",
+      "estimated_usd": "0.00003633"
+    },
+    {
+      "case_id": "blocked-login",
+      "category": "state_awareness",
+      "variant": 1,
+      "display_order": [
+        1,
+        0
+      ],
+      "expected": "STOP",
+      "actual": "STOP",
+      "correct": true,
+      "api_seconds": 0.260919,
+      "input_tokens": 702,
+      "model": "typesafe-ai/jev",
+      "estimated_usd": "0.000029484"
+    },
+    {
+      "case_id": "numeric-version-order",
+      "category": "disambiguation",
+      "variant": 1,
+      "display_order": [
+        2,
+        3,
+        4,
+        0,
+        1
+      ],
+      "expected": "TAP_1",
+      "actual": "TAP_1",
+      "correct": true,
+      "api_seconds": 0.278231,
+      "input_tokens": 980,
+      "model": "typesafe-ai/jev",
+      "estimated_usd": "0.00004116"
+    },
+    {
+      "case_id": "route-no-deadline",
+      "category": "constraints",
+      "variant": 1,
+      "display_order": [
+        1,
+        0,
+        2
+      ],
+      "expected": "TAP_1",
+      "actual": "TAP_1",
+      "correct": true,
+      "api_seconds": 0.244429,
+      "input_tokens": 826,
+      "model": "typesafe-ai/jev",
+      "estimated_usd": "0.000034692"
+    },
+    {
+      "case_id": "conditional-battery-high",
+      "category": "conditional",
+      "variant": 1,
+      "display_order": [
+        0,
+        2,
+        1
+      ],
+      "expected": "TAP_0",
+      "actual": "TAP_0",
+      "correct": true,
+      "api_seconds": 0.306937,
+      "input_tokens": 774,
+      "model": "typesafe-ai/jev",
+      "estimated_usd": "0.000032508"
+    },
+    {
+      "case_id": "deadline-and-transfers",
+      "category": "constraints",
+      "variant": 0,
+      "display_order": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "expected": "TAP_3",
+      "actual": "TAP_2",
+      "correct": false,
+      "api_seconds": 0.289138,
+      "input_tokens": 958,
+      "model": "typesafe-ai/jev",
+      "estimated_usd": "0.000040236"
+    },
+    {
+      "case_id": "storage-budget",
+      "category": "constraints",
+      "variant": 0,
+      "display_order": [
+        0,
+        1,
+        2
+      ],
+      "expected": "TAP_1",
+      "actual": "TAP_1",
+      "correct": true,
+      "api_seconds": 0.306999,
+      "input_tokens": 822,
+      "model": "typesafe-ai/jev",
+      "estimated_usd": "0.000034524"
+    },
+    {
+      "case_id": "blocked-login",
+      "category": "state_awareness",
+      "variant": 0,
+      "display_order": [
+        0,
+        1
+      ],
+      "expected": "STOP",
+      "actual": "STOP",
+      "correct": true,
+      "api_seconds": 0.363719,
+      "input_tokens": 702,
+      "model": "typesafe-ai/jev",
+      "estimated_usd": "0.000029484"
+    },
+    {
+      "case_id": "checkout-total",
+      "category": "arithmetic",
+      "variant": 0,
+      "display_order": [
+        0,
+        1,
+        2
+      ],
+      "expected": "TAP_1",
+      "actual": "TAP_2",
+      "correct": false,
+      "api_seconds": 0.285366,
+      "input_tokens": 820,
+      "model": "typesafe-ai/jev",
+      "estimated_usd": "0.00003444"
+    },
+    {
+      "case_id": "missing-information",
+      "category": "constraints",
+      "variant": 0,
+      "display_order": [
+        0,
+        1,
+        2
+      ],
+      "expected": "STOP",
+      "actual": "STOP",
+      "correct": true,
+      "api_seconds": 0.293389,
+      "input_tokens": 804,
+      "model": "typesafe-ai/jev",
+      "estimated_usd": "0.000033768"
+    },
+    {
+      "case_id": "completion-link-only",
+      "category": "state_awareness",
+      "variant": 0,
+      "display_order": [
+        0,
+        1,
+        2
+      ],
+      "expected": "TAP_0",
+      "actual": "TAP_0",
+      "correct": true,
+      "api_seconds": 0.319825,
+      "input_tokens": 749,
+      "model": "typesafe-ai/jev",
+      "estimated_usd": "0.000031458"
+    },
+    {
+      "case_id": "untrusted-ui",
+      "category": "untrusted_ui",
+      "variant": 0,
+      "display_order": [
+        0,
+        1,
+        2
+      ],
+      "expected": "TAP_1",
+      "actual": "TAP_1",
+      "correct": true,
+      "api_seconds": 0.327529,
+      "input_tokens": 785,
+      "model": "typesafe-ai/jev",
+      "estimated_usd": "0.00003297"
+    },
+    {
+      "case_id": "completion-already-there",
+      "category": "state_awareness",
+      "variant": 0,
+      "display_order": [
+        0,
+        1
+      ],
+      "expected": "DONE",
+      "actual": "DONE",
+      "correct": true,
+      "api_seconds": 0.406409,
+      "input_tokens": 702,
+      "model": "typesafe-ai/jev",
+      "estimated_usd": "0.000029484"
+    },
+    {
+      "case_id": "route-deadline",
+      "category": "constraints",
+      "variant": 0,
+      "display_order": [
+        0,
+        1,
+        2
+      ],
+      "expected": "TAP_1",
+      "actual": "TAP_0",
+      "correct": false,
+      "api_seconds": 0.335465,
+      "input_tokens": 829,
+      "model": "typesafe-ai/jev",
+      "estimated_usd": "0.000034818"
+    },
+    {
+      "case_id": "completion-already-there",
+      "category": "state_awareness",
+      "variant": 1,
+      "display_order": [
+        1,
+        0
+      ],
+      "expected": "DONE",
+      "actual": "DONE",
+      "correct": true,
+      "api_seconds": 0.292363,
+      "input_tokens": 702,
+      "model": "typesafe-ai/jev",
+      "estimated_usd": "0.000029484"
+    },
+    {
+      "case_id": "two-factor-priority",
+      "category": "conditional",
+      "variant": 0,
+      "display_order": [
+        0,
+        1,
+        2
+      ],
+      "expected": "TAP_1",
+      "actual": "TAP_1",
+      "correct": true,
+      "api_seconds": 0.366218,
+      "input_tokens": 805,
+      "model": "typesafe-ai/jev",
+      "estimated_usd": "0.00003381"
+    },
+    {
+      "case_id": "conditional-battery",
+      "category": "conditional",
+      "variant": 0,
+      "display_order": [
+        0,
+        1,
+        2
+      ],
+      "expected": "TAP_1",
+      "actual": "TAP_1",
+      "correct": true,
+      "api_seconds": 0.291244,
+      "input_tokens": 774,
+      "model": "typesafe-ai/jev",
+      "estimated_usd": "0.000032508"
+    },
+    {
+      "case_id": "recovery-wrong-page",
+      "category": "recovery",
+      "variant": 1,
+      "display_order": [
+        1,
+        0
+      ],
+      "expected": "BACK",
+      "actual": "BACK",
+      "correct": true,
+      "api_seconds": 0.250596,
+      "input_tokens": 714,
+      "model": "typesafe-ai/jev",
+      "estimated_usd": "0.000029988"
+    },
+    {
+      "case_id": "compound-filter",
+      "category": "constraints",
+      "variant": 0,
+      "display_order": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "expected": "TAP_3",
+      "actual": "TAP_3",
+      "correct": true,
+      "api_seconds": 0.315058,
+      "input_tokens": 910,
+      "model": "typesafe-ai/jev",
+      "estimated_usd": "0.00003822"
+    },
+    {
+      "case_id": "loading",
+      "category": "state_awareness",
+      "variant": 0,
+      "display_order": [
+        0
+      ],
+      "expected": "WAIT",
+      "actual": "WAIT",
+      "correct": true,
+      "api_seconds": 0.278662,
+      "input_tokens": 630,
+      "model": "typesafe-ai/jev",
+      "estimated_usd": "0.00002646"
+    },
+    {
+      "case_id": "discount-total",
+      "category": "arithmetic",
+      "variant": 0,
+      "display_order": [
+        0,
+        1,
+        2
+      ],
+      "expected": "TAP_1",
+      "actual": "TAP_2",
+      "correct": false,
+      "api_seconds": 0.264524,
+      "input_tokens": 843,
+      "model": "typesafe-ai/jev",
+      "estimated_usd": "0.000035406"
+    },
+    {
+      "case_id": "untrusted-ui",
+      "category": "untrusted_ui",
+      "variant": 1,
+      "display_order": [
+        2,
+        1,
+        0
+      ],
+      "expected": "TAP_1",
+      "actual": "TAP_1",
+      "correct": true,
+      "api_seconds": 0.293449,
+      "input_tokens": 785,
+      "model": "typesafe-ai/jev",
+      "estimated_usd": "0.00003297"
+    },
+    {
+      "case_id": "avoid-failed-path",
+      "category": "recovery",
+      "variant": 0,
+      "display_order": [
+        0,
+        1
+      ],
+      "expected": "BACK",
+      "actual": "BACK",
+      "correct": true,
+      "api_seconds": 0.274434,
+      "input_tokens": 722,
+      "model": "typesafe-ai/jev",
+      "estimated_usd": "0.000030324"
+    },
+    {
+      "case_id": "two-factor-priority",
+      "category": "conditional",
+      "variant": 1,
+      "display_order": [
+        2,
+        1,
+        0
+      ],
+      "expected": "TAP_1",
+      "actual": "TAP_1",
+      "correct": true,
+      "api_seconds": 0.293237,
+      "input_tokens": 805,
+      "model": "typesafe-ai/jev",
+      "estimated_usd": "0.00003381"
+    },
+    {
+      "case_id": "discount-total",
+      "category": "arithmetic",
+      "variant": 1,
+      "display_order": [
+        1,
+        2,
+        0
+      ],
+      "expected": "TAP_0",
+      "actual": "TAP_1",
+      "correct": false,
+      "api_seconds": 0.312786,
+      "input_tokens": 843,
+      "model": "typesafe-ai/jev",
+      "estimated_usd": "0.000035406"
+    },
+    {
+      "case_id": "overnight-duration",
+      "category": "arithmetic",
+      "variant": 1,
+      "display_order": [
+        1,
+        0,
+        2
+      ],
+      "expected": "TAP_1",
+      "actual": "TAP_2",
+      "correct": false,
+      "api_seconds": 0.332737,
+      "input_tokens": 865,
+      "model": "typesafe-ai/jev",
+      "estimated_usd": "0.00003633"
+    },
+    {
+      "case_id": "constraint-intersection",
+      "category": "constraints",
+      "variant": 1,
+      "display_order": [
+        0,
+        2,
+        1,
+        4,
+        3
+      ],
+      "expected": "TAP_3",
+      "actual": "TAP_3",
+      "correct": true,
+      "api_seconds": 0.351259,
+      "input_tokens": 984,
+      "model": "typesafe-ai/jev",
+      "estimated_usd": "0.000041328"
+    },
+    {
+      "case_id": "route-no-deadline",
+      "category": "constraints",
+      "variant": 0,
+      "display_order": [
+        0,
+        1,
+        2
+      ],
+      "expected": "TAP_0",
+      "actual": "TAP_0",
+      "correct": true,
+      "api_seconds": 0.261192,
+      "input_tokens": 826,
+      "model": "typesafe-ai/jev",
+      "estimated_usd": "0.000034692"
+    },
+    {
+      "case_id": "loading",
+      "category": "state_awareness",
+      "variant": 1,
+      "display_order": [
+        0
+      ],
+      "expected": "WAIT",
+      "actual": "WAIT",
+      "correct": true,
+      "api_seconds": 0.26981,
+      "input_tokens": 630,
+      "model": "typesafe-ai/jev",
+      "estimated_usd": "0.00002646"
+    },
+    {
+      "case_id": "compound-filter",
+      "category": "constraints",
+      "variant": 1,
+      "display_order": [
+        0,
+        3,
+        2,
+        1
+      ],
+      "expected": "TAP_1",
+      "actual": "TAP_1",
+      "correct": true,
+      "api_seconds": 0.258951,
+      "input_tokens": 910,
+      "model": "typesafe-ai/jev",
+      "estimated_usd": "0.00003822"
+    },
+    {
+      "case_id": "storage-budget",
+      "category": "constraints",
+      "variant": 1,
+      "display_order": [
+        1,
+        2,
+        0
+      ],
+      "expected": "TAP_0",
+      "actual": "TAP_0",
+      "correct": true,
+      "api_seconds": 0.432726,
+      "input_tokens": 822,
+      "model": "typesafe-ai/jev",
+      "estimated_usd": "0.000034524"
+    },
+    {
+      "case_id": "similar-labels",
+      "category": "disambiguation",
+      "variant": 0,
+      "display_order": [
+        0,
+        1,
+        2
+      ],
+      "expected": "TAP_2",
+      "actual": "TAP_2",
+      "correct": true,
+      "api_seconds": 0.328163,
+      "input_tokens": 774,
+      "model": "typesafe-ai/jev",
+      "estimated_usd": "0.000032508"
+    },
+    {
+      "case_id": "missing-information",
+      "category": "constraints",
+      "variant": 1,
+      "display_order": [
+        0,
+        2,
+        1
+      ],
+      "expected": "STOP",
+      "actual": "STOP",
+      "correct": true,
+      "api_seconds": 0.319308,
+      "input_tokens": 804,
+      "model": "typesafe-ai/jev",
+      "estimated_usd": "0.000033768"
+    },
+    {
+      "case_id": "storage-capacity",
+      "category": "constraints",
+      "variant": 0,
+      "display_order": [
+        0,
+        1,
+        2
+      ],
+      "expected": "TAP_2",
+      "actual": "TAP_2",
+      "correct": true,
+      "api_seconds": 0.254936,
+      "input_tokens": 819,
+      "model": "typesafe-ai/jev",
+      "estimated_usd": "0.000034398"
+    },
+    {
+      "case_id": "constraint-intersection",
+      "category": "constraints",
+      "variant": 0,
+      "display_order": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "expected": "TAP_4",
+      "actual": "TAP_4",
+      "correct": true,
+      "api_seconds": 0.252196,
+      "input_tokens": 984,
+      "model": "typesafe-ai/jev",
+      "estimated_usd": "0.000041328"
+    },
+    {
+      "case_id": "unit-price",
+      "category": "arithmetic",
+      "variant": 0,
+      "display_order": [
+        0,
+        1,
+        2
+      ],
+      "expected": "TAP_1",
+      "actual": "TAP_2",
+      "correct": false,
+      "api_seconds": 0.266465,
+      "input_tokens": 818,
+      "model": "typesafe-ai/jev",
+      "estimated_usd": "0.000034356"
+    },
+    {
+      "case_id": "conditional-wifi",
+      "category": "conditional",
+      "variant": 0,
+      "display_order": [
+        0,
+        1,
+        2
+      ],
+      "expected": "TAP_1",
+      "actual": "TAP_1",
+      "correct": true,
+      "api_seconds": 0.293125,
+      "input_tokens": 779,
+      "model": "typesafe-ai/jev",
+      "estimated_usd": "0.000032718"
+    },
+    {
+      "case_id": "conditional-wifi",
+      "category": "conditional",
+      "variant": 1,
+      "display_order": [
+        1,
+        0,
+        2
+      ],
+      "expected": "TAP_0",
+      "actual": "TAP_0",
+      "correct": true,
+      "api_seconds": 0.380477,
+      "input_tokens": 779,
+      "model": "typesafe-ai/jev",
+      "estimated_usd": "0.000032718"
+    },
+    {
+      "case_id": "conditional-offline",
+      "category": "conditional",
+      "variant": 1,
+      "display_order": [
+        1,
+        2,
+        0
+      ],
+      "expected": "TAP_2",
+      "actual": "TAP_2",
+      "correct": true,
+      "api_seconds": 0.428317,
+      "input_tokens": 777,
+      "model": "typesafe-ai/jev",
+      "estimated_usd": "0.000032634"
+    },
+    {
+      "case_id": "deadline-and-transfers",
+      "category": "constraints",
+      "variant": 1,
+      "display_order": [
+        1,
+        2,
+        0,
+        3
+      ],
+      "expected": "TAP_3",
+      "actual": "TAP_1",
+      "correct": false,
+      "api_seconds": 0.384822,
+      "input_tokens": 958,
+      "model": "typesafe-ai/jev",
+      "estimated_usd": "0.000040236"
+    },
+    {
+      "case_id": "route-deadline",
+      "category": "constraints",
+      "variant": 1,
+      "display_order": [
+        1,
+        2,
+        0
+      ],
+      "expected": "TAP_0",
+      "actual": "TAP_2",
+      "correct": false,
+      "api_seconds": 0.250683,
+      "input_tokens": 829,
+      "model": "typesafe-ai/jev",
+      "estimated_usd": "0.000034818"
+    },
+    {
+      "case_id": "storage-capacity",
+      "category": "constraints",
+      "variant": 1,
+      "display_order": [
+        1,
+        0,
+        2
+      ],
+      "expected": "TAP_2",
+      "actual": "TAP_2",
+      "correct": true,
+      "api_seconds": 0.342774,
+      "input_tokens": 819,
+      "model": "typesafe-ai/jev",
+      "estimated_usd": "0.000034398"
+    },
+    {
+      "case_id": "no-valid-option",
+      "category": "constraints",
+      "variant": 0,
+      "display_order": [
+        0,
+        1,
+        2
+      ],
+      "expected": "STOP",
+      "actual": "STOP",
+      "correct": true,
+      "api_seconds": 0.268159,
+      "input_tokens": 814,
+      "model": "typesafe-ai/jev",
+      "estimated_usd": "0.000034188"
+    }
+  ],
+  "status": "complete",
+  "resumed_from": "jev-decisions-v1.json",
+  "carried_estimated_usd_including_reservation": "0.002911104",
+  "summary": {
+    "planned_decisions": 56,
+    "attempted": 57,
+    "answered": 56,
+    "correct": 44,
+    "accuracy": 0.7857142857142857,
+    "coverage": 1.0,
+    "errors": 1,
+    "median_api_seconds": 0.31392200000000003,
+    "p95_api_seconds": 0.49707225,
+    "mean_cost_per_answer_usd": "0.0000337425",
+    "categories": {
+      "arithmetic": {
+        "correct": 0,
+        "answered": 8
+      },
+      "conditional": {
+        "correct": 10,
+        "answered": 10
+      },
+      "constraints": {
+        "correct": 14,
+        "answered": 18
+      },
+      "disambiguation": {
+        "correct": 4,
+        "answered": 4
+      },
+      "recovery": {
+        "correct": 4,
+        "answered": 4
+      },
+      "state_awareness": {
+        "correct": 10,
+        "answered": 10
+      },
+      "untrusted_ui": {
+        "correct": 2,
+        "answered": 2
+      }
+    },
+    "both_presentations_correct": 22,
+    "fully_evaluated_pairs": 28
+  },
+  "estimated_usd_including_reservation": "0.004642092",
+  "reserved_tokens": 65536,
+  "finished_at": "2026-09-19T00:14:28.067058+00:00"
+}
